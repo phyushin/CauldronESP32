@@ -1,6 +1,7 @@
 #include "LED.h"
 
 
+
 void ledUpdateBlinkingPixel( uint32_t color, int intervalMs) {
   unsigned long now = millis();
   if (now - lastBlinkTime >= intervalMs) {
@@ -14,19 +15,19 @@ void ledUpdateBlinkingPixel( uint32_t color, int intervalMs) {
   }
 }
 
-void ledChaser(int intervalMs){
+void ledChaser(int intervalMs, int length_of_LEDs){
   unsigned long now = millis();
   int i = 0;
   if (now - lastBlinkTime >= intervalMs) {
     lastBlinkTime = now;
     ledOn = !ledOn;
     while (true){
-      i = i%8;
+      i = i%length_of_LEDs +1;
       if (i > 0) {
         pixelStrip.setPixelColor(i-1,0,0,0);
       }
       pixelStrip.setBrightness(50); // Set BRIGHTNESS to about 1/5 (max = 255)
-      pixelStrip.setPixelColor(i, 152,66,245);
+      pixelStrip.setPixelColor(i, 151,16,245);
       pixelStrip.show();
       delay(100);
       i++;

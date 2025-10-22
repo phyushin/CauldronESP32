@@ -73,8 +73,11 @@ void loop() {
       //displayDrawMenu();
       currentLedColor = Adafruit_NeoPixel::Color(0, 0, 255);  // Blue for main menu
     }
-  ledChaser();
 
-  delay(10);
+
+  
+  ledChaser(500,10);
+
+  delay(50);
   }
 }

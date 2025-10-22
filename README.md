@@ -17,7 +17,15 @@ I wanted to actually get a project out of the door for a change ... and since it
 ---
 ### Pin setup
 
-TO DO
+Based on the image in the images folder
+
+the three pins from the addressable LED strip goes:
+
+| Pin on ESP| Pin on LED Strip |
+|:--:|:--:|
+|5V|5V|
+|GND|GND|
+|GP5|DIN| 
 
 
 
