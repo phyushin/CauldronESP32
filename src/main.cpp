@@ -8,6 +8,8 @@
 #include "Game.h"
 
 
+static const int purple[] = {151,16,245};
+
 // --- Mode Selection ---
 bool debugMode = false;
 
@@ -76,7 +78,7 @@ void loop() {
 
 
   
-  ledChaser(100,200);
+  ledChaser(100, 6);
 
   delay(50);
   }

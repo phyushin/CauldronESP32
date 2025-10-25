@@ -10,8 +10,7 @@
 // --- LED Section ---
 static const int NUM_PIXELS_PER_STRIP = 200; //Change this number here to 
 static int pixelPin = 5 ;
-static Adafruit_NeoPixel pixelStrip(NUM_PIXELS_PER_STRIP, pixelPin, NEO_GRB + NEO_KHZ800);
-
+static Adafruit_NeoPixel pixelStrip(NUM_PIXELS_PER_STRIP, pixelPin, NEO_GRB + NEO_KHZ800); // to do more than one pixel strip just create an array with different pixelPin number should work
 static unsigned long lastBlinkTime = 0;
 static bool ledOn = false;
 static uint32_t currentLedColor = 0;

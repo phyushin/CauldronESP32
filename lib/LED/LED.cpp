@@ -1,17 +1,19 @@
 #include "LED.h"
 
-const int BRIGHT = 50;
-const int MED = 20;
-const int DIM = 5;
+static const int BRIGHT = 50;
+static const int MED = 20;
+static const int DIM = 5;
 
 
-void ledUpdateBlinkingPixel( uint32_t color, int intervalMs) {
+
+
+void ledUpdateBlinkingPixel(uint32_t color, int intervalMs) {
   unsigned long now = millis();
   if (now - lastBlinkTime >= intervalMs) {
     lastBlinkTime = now;
     ledOn = !ledOn;
 
-    pixelStrip.setBrightness(50); // Set BRIGHTNESS to about 1/5 (max = 255)
+    pixelStrip.setBrightness(MED); 
 
     pixelStrip.setPixelColor(0, ledOn ? color : 0);
     pixelStrip.show();
@@ -20,7 +22,11 @@ void ledUpdateBlinkingPixel( uint32_t color, int intervalMs) {
 /**
  * LED Chaser should bounce from side to side
  */
-void ledChaser(int intervalMs, int length_of_LEDs){
+void ledChaser(int intervalMs,  int length_of_LEDs ){
+  //int r = colour[0];
+  //int g = colour[1];
+  //int b = colour[2];
+
   unsigned long now = millis();
   int i = 0;
   if (now - lastBlinkTime >= intervalMs) {
@@ -31,7 +37,10 @@ void ledChaser(int intervalMs, int length_of_LEDs){
       if (i > 0) {
         pixelStrip.setPixelColor(i-1,0,0,0);
       }
-      pixelStrip.setBrightness(DIM); // Set BRIGHTNESS to about 1/5 (max = 255)
+      else{
+        pixelStrip.setPixelColor(length_of_LEDs,0,0,0); // if i is zero - we've looped round so clear the last one :)
+      }
+      pixelStrip.setBrightness(MED); // Set BRIGHTNESS to about 1/5 (max = 255)
       pixelStrip.setPixelColor(i, 151,16,245);
       pixelStrip.show();
       delay(100);
