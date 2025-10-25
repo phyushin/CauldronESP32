@@ -1,5 +1,8 @@
 #include "LED.h"
 
+const int BRIGHT = 50;
+const int MED = 20;
+const int DIM = 5;
 
 
 void ledUpdateBlinkingPixel( uint32_t color, int intervalMs) {
@@ -14,7 +17,9 @@ void ledUpdateBlinkingPixel( uint32_t color, int intervalMs) {
     pixelStrip.show();
   }
 }
-
+/**
+ * LED Chaser should bounce from side to side
+ */
 void ledChaser(int intervalMs, int length_of_LEDs){
   unsigned long now = millis();
   int i = 0;
@@ -22,11 +27,11 @@ void ledChaser(int intervalMs, int length_of_LEDs){
     lastBlinkTime = now;
     ledOn = !ledOn;
     while (true){
-      i = i%length_of_LEDs +1;
+      i = i%(length_of_LEDs +1);
       if (i > 0) {
         pixelStrip.setPixelColor(i-1,0,0,0);
       }
-      pixelStrip.setBrightness(50); // Set BRIGHTNESS to about 1/5 (max = 255)
+      pixelStrip.setBrightness(DIM); // Set BRIGHTNESS to about 1/5 (max = 255)
       pixelStrip.setPixelColor(i, 151,16,245);
       pixelStrip.show();
       delay(100);
@@ -140,7 +145,7 @@ void kittChaser(int intervalMs){// Like the front of the car from knight righer
   }
 }
 
-void breatheLed( uint8_t rColour, uint8_t gColour, uint8_t bColour, int intervalMs){
+void breatheLed( uint8_t rColour, uint8_t gColour, uint8_t bColour, int intervalMs, int Length_of_LEDs = 7){
   unsigned long now = millis();
   int i, j= 0;
   if (now - lastBlinkTime >= intervalMs) {

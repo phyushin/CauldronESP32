@@ -8,7 +8,7 @@
 //#include "Colour.h"
 
 // --- LED Section ---
-static const int NUM_PIXELS_PER_STRIP = 7;
+static const int NUM_PIXELS_PER_STRIP = 200; //Change this number here to 
 static int pixelPin = 5 ;
 static Adafruit_NeoPixel pixelStrip(NUM_PIXELS_PER_STRIP, pixelPin, NEO_GRB + NEO_KHZ800);
 
@@ -23,7 +23,7 @@ void ledUpdateBlinkingPixel(uint32_t color, int intervalMs = 500);
 void ledChaser(int intervalMs = 500, int length_of_LEDs=7);
 void cylonChaser(int intervalMs = 500);
 void kittChaser(int intervalMs = 500);
-void breatheLed( uint8_t rColour, uint8_t gColour, uint8_t bColour,int intervalMs);
+void breatheLed( uint8_t rColour, uint8_t gColour, uint8_t bColour,int intervalMs, int Length_of_LEDs);
 void breatheBlue(int intervalMs);
 void breatheGreen(int intervalMs);
 void breatheRed(int intervalMs);

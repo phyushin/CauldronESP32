@@ -76,7 +76,7 @@ void loop() {
 
 
   
-  ledChaser(500,10);
+  ledChaser(100,200);
 
   delay(50);
   }
