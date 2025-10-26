@@ -4,6 +4,8 @@
 #include "WebApp.h"
 
 
+
+
 void readFlagsFromEEPROM(){
   for (int i = 0; i < sizeof(flags); i++){
     flags[i] = EEPROM.read(i);

@@ -10,7 +10,7 @@ I wanted to actually get a project out of the door for a change ... and since it
 | ADDRESSABLE LED STRIP|| DEPENDS ON THE LENGTH|
 
 ## Todo
-- [ ] Get LEDS to do spooky colours
+- [ ] Get LEDs to do spooky colours
 - [ ] Add web app to control the wifi
 
 
