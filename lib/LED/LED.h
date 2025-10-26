@@ -21,6 +21,9 @@ static uint32_t purple;
 void ledUpdateBlinkingPixel(uint32_t colour, int intervalMs = 500);
 //void ledChaser(Colour &c, int intervalMs = 500, int length_of_LEDs=7); <-- doesn't work don't know why yet will mess with this
 void ledChaser(uint32_t colour, int intervalMs = 500, int length_of_LEDs=7);
+void ledBar(uint32_t colour, int intervalMs = 500, int length_of_LEDs=7);
+
+
 void cylonChaser(int intervalMs = 500, int length_of_LEDs=7);
 void kittChaser(int intervalMs = 500, int length_of_LEDs=7);
 
@@ -33,7 +36,7 @@ void RulerLEDs();
 /**
  *  effects that _breathe_
  */
-void breatheLed( uint8_t rColour, uint8_t gColour, uint8_t bColour,int intervalMs, int Length_of_LEDs); // generic 
+void breatheLed( uint32_t colour, int intervalMs, int Length_of_LEDs); // generic 
 void breatheBlue(int intervalMs);
 void breatheGreen(int intervalMs);
 void breatheRed(int intervalMs);
