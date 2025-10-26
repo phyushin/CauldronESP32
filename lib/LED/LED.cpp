@@ -8,18 +8,21 @@ static const int DIM = 5;
  bool run;
 
 
-void ledUpdateBlinkingPixel(uint32_t color, int intervalMs) {
-  unsigned long now = millis();
-  if (now - lastBlinkTime >= intervalMs) {
-    lastBlinkTime = now;
+void ledUpdateBlinkingPixel(uint32_t colour, int intervalMs) {
+  pixelStrip.setBrightness(30);
+  while (true){
     ledOn = !ledOn;
+    /**
+    Although brigtness _can_ go to 255 - you'll not really notice the difference after about 50... 
+    it's do do with how eyes perceive light
+    */
 
-    pixelStrip.setBrightness(MED); 
-
-    pixelStrip.setPixelColor(0, ledOn ? color : 0);
+    pixelStrip.setPixelColor(59, ledOn ? colour : 0); // This uses just the first LED in the strip
+    delay(intervalMs);
     pixelStrip.show();
   }
 }
+
 
 void RulerLEDs(){
   int length_of_LEDs = 100;
@@ -27,7 +30,7 @@ void RulerLEDs(){
   run = true;
   pixelStrip.setBrightness(MED); // Set BRIGHTNESS to about 1/5 (max = 255)
   //245/250/170
-  while (run){
+  while (true){
       if (i% 10 == 0){
         pixelStrip.setPixelColor(i,245,150,0);
       }else{
@@ -36,14 +39,13 @@ void RulerLEDs(){
       pixelStrip.show();
       delay(100);
       i++;
-      run = (i >= length_of_LEDs);
     }
   }
 
 /**
  * LED Chaser should bounce from side to side
  */
-void ledChaser(int intervalMs,  int length_of_LEDs ){
+void ledChaser(uint32_t colour, int intervalMs,  int length_of_LEDs){
   //int r = colour[0];
   //int g = colour[1];
   //int b = colour[2];
@@ -62,7 +64,7 @@ void ledChaser(int intervalMs,  int length_of_LEDs ){
         pixelStrip.setPixelColor(length_of_LEDs,0,0,0); // if i is zero - we've looped round so clear the last one :)
       }
       pixelStrip.setBrightness(MED); // Set BRIGHTNESS to about 1/5 (max = 255)
-      pixelStrip.setPixelColor(i, 151,16,245);
+      pixelStrip.setPixelColor(i, colour);
       pixelStrip.show();
       delay(100);
       i++;
@@ -71,7 +73,7 @@ void ledChaser(int intervalMs,  int length_of_LEDs ){
   }
 }
 
-void cylonChaser(int intervalMs){
+void cylonChaser(int intervalMs, int length_of_LEDs){
   unsigned long now = millis();
   int i,j = 0;
   if (now - lastBlinkTime >= intervalMs) {
@@ -89,7 +91,7 @@ void cylonChaser(int intervalMs){
       pixelStrip.show();
       delay(80);
       i = i + j;
-      if (i >= 6){
+      if (i >= (length_of_LEDs - 1)){
         j = -1;
         delay(20);
       }
@@ -138,7 +140,7 @@ void fringeChaser(int intervalMs){
   }
 }
 
-void kittChaser(int intervalMs){// Like the front of the car from knight righer
+void kittChaser(int intervalMs, int length_of_LEDs){// Like the front of the car from knight righer
   unsigned long now = millis();
   int i,j = 0;
   bool playEffect = true;
@@ -160,7 +162,7 @@ void kittChaser(int intervalMs){// Like the front of the car from knight righer
       pixelStrip.show();
       delay(80);
       i = i + j;
-      if (i >= 6){
+      if (i >= (length_of_LEDs -1)){
         j = -1;
         delay(20);
       }

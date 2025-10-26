@@ -73,15 +73,21 @@ void loop() {
     if (remaining == 0) {
       bootComplete = true;
       //displayDrawMenu();
-      currentLedColor = Adafruit_NeoPixel::Color(0, 0, 255);  // Blue for main menu
+      currentLedColor = Adafruit_NeoPixel::Color(255,0,0);  // RED for error  for main menu
+      ledUpdateBlinkingPixel(currentLedColor,200);
     }
 
 
   
-  //kittChaser(100);
+  //kittChaser(100,59);
   //RulerLEDs();
   //breathePink(500);
-  RulerLEDs();
+  //RulerLEDs();
+  purple = Adafruit_NeoPixel::Color(151,16,245);
+  ledChaser(purple,500,59);
+
+
+  delay(200);
   
   }
 }

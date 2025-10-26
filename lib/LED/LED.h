@@ -14,14 +14,15 @@ static Adafruit_NeoPixel pixelStrip(NUM_PIXELS_PER_STRIP, pixelPin, NEO_GRB + NE
 static unsigned long lastBlinkTime = 0;
 static bool ledOn = false;
 static uint32_t currentLedColor = 0;
+static uint32_t purple;
 
 
 
-void ledUpdateBlinkingPixel(uint32_t color, int intervalMs = 500);
+void ledUpdateBlinkingPixel(uint32_t colour, int intervalMs = 500);
 //void ledChaser(Colour &c, int intervalMs = 500, int length_of_LEDs=7); <-- doesn't work don't know why yet will mess with this
-void ledChaser(int intervalMs = 500, int length_of_LEDs=7);
-void cylonChaser(int intervalMs = 500);
-void kittChaser(int intervalMs = 500);
+void ledChaser(uint32_t colour, int intervalMs = 500, int length_of_LEDs=7);
+void cylonChaser(int intervalMs = 500, int length_of_LEDs=7);
+void kittChaser(int intervalMs = 500, int length_of_LEDs=7);
 
 /** _MEASURING LED function*/
 void RulerLEDs();
