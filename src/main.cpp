@@ -84,9 +84,7 @@ void loop() {
   //breathePink(500);
   //RulerLEDs();
   purple = Adafruit_NeoPixel::Color(151,16,245);
-  //ledChaser(purple,500,59);
-
-  ledBar(purple,500,59);
+  ledChaser(purple,500,59);
 
 
   delay(200);

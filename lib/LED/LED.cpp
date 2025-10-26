@@ -42,30 +42,13 @@ void RulerLEDs(){
     }
   }
 
-void ledBar(uint32_t colour, int intervalMs,  int length_of_LEDs){
-  run = true;
-  bool ledOn = true;
-
-  unsigned long now = millis();
-  int i = 0;
-    while (run){
-      i = i%(length_of_LEDs +1);
-      pixelStrip.setBrightness(MED); // Set BRIGHTNESS to about 1/5 (max = 255)
-      pixelStrip.setPixelColor(i, (ledOn ? colour : 0));
-      pixelStrip.show();
-      delay(100);
-      i++;
-      if (i == length_of_LEDs){
-        ledOn = !ledOn;
-      }
-     
-    }
-  }
-
 /**
  * LED Chaser should bounce from side to side
  */
 void ledChaser(uint32_t colour, int intervalMs,  int length_of_LEDs){
+  //int r = colour[0];
+  //int g = colour[1];
+  //int b = colour[2];
   run = true;
   unsigned long now = millis();
   int i = 0;
@@ -75,10 +58,10 @@ void ledChaser(uint32_t colour, int intervalMs,  int length_of_LEDs){
     while (run){
       i = i%(length_of_LEDs +1);
       if (i > 0) {
-        pixelStrip.setPixelColor(i-1,0);
+        pixelStrip.setPixelColor(i-1,0,0,0);
       }
       else{
-        pixelStrip.setPixelColor(length_of_LEDs,0); // if i is zero - we've looped round so clear the last one :)
+        pixelStrip.setPixelColor(length_of_LEDs,0,0,0); // if i is zero - we've looped round so clear the last one :)
       }
       pixelStrip.setBrightness(MED); // Set BRIGHTNESS to about 1/5 (max = 255)
       pixelStrip.setPixelColor(i, colour);
@@ -195,7 +178,7 @@ void kittChaser(int intervalMs, int length_of_LEDs){// Like the front of the car
   }
 }
 
-void breatheLed(uint32_t colour, int intervalMs, int Length_of_LEDs = 7){
+void breatheLed( uint8_t rColour, uint8_t gColour, uint8_t bColour, int intervalMs, int Length_of_LEDs = 7){
   unsigned long now = millis();
   int i, j,l = 0;
   if (now - lastBlinkTime >= intervalMs) {
@@ -204,7 +187,7 @@ void breatheLed(uint32_t colour, int intervalMs, int Length_of_LEDs = 7){
     while (run){
       while (l < Length_of_LEDs){
         pixelStrip.setBrightness(i); // Set BRIGHTNESS to about 1/5 (max = 255)
-        pixelStrip.setPixelColor(l, colour);
+        pixelStrip.setPixelColor(l, rColour,gColour,bColour);
         pixelStrip.show();
         delay(10);
 
@@ -224,16 +207,15 @@ void breatheLed(uint32_t colour, int intervalMs, int Length_of_LEDs = 7){
 }
 
 void breatheBlue(int intervalMs){
- 
-    breatheLed(Adafruit_NeoPixel::Color(0,0,255), intervalMs);
+    breatheLed(0,0,255, intervalMs);
   }
 void breatheGreen(int intervalMs){
-    breatheLed(Adafruit_NeoPixel::Color(0,255,0), intervalMs);
+    breatheLed(0,255,0, intervalMs);
 }
 void breatheRed(int intervalMs){
-    breatheLed(Adafruit_NeoPixel::Color(255,0,0), intervalMs);
+    breatheLed(255,0,0, intervalMs);
 }
 
 void breathePink(int intervalMs){
-  breatheLed(Adafruit_NeoPixel::Color(0,0,128),200,200);
+  breatheLed(255,0,128,200,200);
 }
