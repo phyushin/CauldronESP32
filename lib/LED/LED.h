@@ -21,7 +21,7 @@ static uint32_t purple;
 void ledUpdateBlinkingPixel(uint32_t colour, int intervalMs = 500);
 //void ledChaser(Colour &c, int intervalMs = 500, int length_of_LEDs=7); <-- doesn't work don't know why yet will mess with this
 void ledChaser(uint32_t colour, int intervalMs = 500, int length_of_LEDs=7);
-void ledBar(uint32_t colour, int intervalMs = 500, int length_of_LEDs=7);
+void ledRolling(uint32_t colour, int intervalMs = 500, int length_of_LEDs=7);
 
 
 void cylonChaser(int intervalMs = 500, int length_of_LEDs=7);
