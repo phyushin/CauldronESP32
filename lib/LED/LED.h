@@ -22,7 +22,17 @@ void ledUpdateBlinkingPixel(uint32_t color, int intervalMs = 500);
 void ledChaser(int intervalMs = 500, int length_of_LEDs=7);
 void cylonChaser(int intervalMs = 500);
 void kittChaser(int intervalMs = 500);
-void breatheLed( uint8_t rColour, uint8_t gColour, uint8_t bColour,int intervalMs, int Length_of_LEDs);
+
+/** _MEASURING LED function*/
+void RulerLEDs();
+
+
+
+
+/**
+ *  effects that _breathe_
+ */
+void breatheLed( uint8_t rColour, uint8_t gColour, uint8_t bColour,int intervalMs, int Length_of_LEDs); // generic 
 void breatheBlue(int intervalMs);
 void breatheGreen(int intervalMs);
 void breatheRed(int intervalMs);

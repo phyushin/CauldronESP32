@@ -6,6 +6,8 @@
 static bool flags[NUM_GLYPHS] = {false};
 static int currentGlyph = 0;
 
+extern bool run;
+
 #define EEPROM_SIZE 100
 
 // --- Menu ---

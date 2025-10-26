@@ -8,7 +8,6 @@
 #include "Game.h"
 
 
-static const int purple[] = {151,16,245};
 
 // --- Mode Selection ---
 bool debugMode = false;
@@ -49,6 +48,7 @@ void setup() {
   pixelStrip.show();
 
   EEPROM.begin(EEPROM_SIZE);
+  run = true;
 }
 
 void loop() {
@@ -78,8 +78,10 @@ void loop() {
 
 
   
-  ledChaser(100, 6);
-
-  delay(50);
+  //kittChaser(100);
+  //RulerLEDs();
+  //breathePink(500);
+  RulerLEDs();
+  
   }
 }

@@ -1,10 +1,11 @@
 #include "LED.h"
+#include "Game.h"
 
 static const int BRIGHT = 50;
 static const int MED = 20;
 static const int DIM = 5;
 
-
+ bool run;
 
 
 void ledUpdateBlinkingPixel(uint32_t color, int intervalMs) {
@@ -19,6 +20,26 @@ void ledUpdateBlinkingPixel(uint32_t color, int intervalMs) {
     pixelStrip.show();
   }
 }
+
+void RulerLEDs(){
+  int length_of_LEDs = 100;
+  int i =0; 
+  run = true;
+  pixelStrip.setBrightness(MED); // Set BRIGHTNESS to about 1/5 (max = 255)
+  //245/250/170
+  while (run){
+      if (i% 10 == 0){
+        pixelStrip.setPixelColor(i,245,150,0);
+      }else{
+        pixelStrip.setPixelColor(i,0,0,255);
+      }
+      pixelStrip.show();
+      delay(100);
+      i++;
+      run = (i >= length_of_LEDs);
+    }
+  }
+
 /**
  * LED Chaser should bounce from side to side
  */
@@ -26,13 +47,13 @@ void ledChaser(int intervalMs,  int length_of_LEDs ){
   //int r = colour[0];
   //int g = colour[1];
   //int b = colour[2];
-
+  run = true;
   unsigned long now = millis();
   int i = 0;
   if (now - lastBlinkTime >= intervalMs) {
     lastBlinkTime = now;
     ledOn = !ledOn;
-    while (true){
+    while (run){
       i = i%(length_of_LEDs +1);
       if (i > 0) {
         pixelStrip.setPixelColor(i-1,0,0,0);
@@ -45,6 +66,7 @@ void ledChaser(int intervalMs,  int length_of_LEDs ){
       pixelStrip.show();
       delay(100);
       i++;
+      run = (length_of_LEDs >=i);
     }
   }
 }
@@ -156,33 +178,29 @@ void kittChaser(int intervalMs){// Like the front of the car from knight righer
 
 void breatheLed( uint8_t rColour, uint8_t gColour, uint8_t bColour, int intervalMs, int Length_of_LEDs = 7){
   unsigned long now = millis();
-  int i, j= 0;
+  int i, j,l = 0;
   if (now - lastBlinkTime >= intervalMs) {
     lastBlinkTime = now;
     ledOn = !ledOn;
-    i = 10;
-    while (true){
-      while (i < 28){
-      pixelStrip.setBrightness(i); // Set BRIGHTNESS to about 1/5 (max = 255)
-      pixelStrip.setPixelColor(0, rColour,gColour,bColour);
-      pixelStrip.setPixelColor(1, rColour,gColour,bColour);
-      pixelStrip.setPixelColor(2, rColour,gColour,bColour);
-      pixelStrip.setPixelColor(3, rColour,gColour,bColour);
-      pixelStrip.setPixelColor(4, rColour,gColour,bColour);
-      pixelStrip.setPixelColor(5, rColour,gColour,bColour);
-      pixelStrip.setPixelColor(6, rColour,gColour,bColour);
-      pixelStrip.show();
-      delay(85);
-      i = i + j;
-      if (i >= 27){
-        j = -1;
+    while (run){
+      while (l < Length_of_LEDs){
+        pixelStrip.setBrightness(i); // Set BRIGHTNESS to about 1/5 (max = 255)
+        pixelStrip.setPixelColor(l, rColour,gColour,bColour);
+        pixelStrip.show();
+        delay(10);
+
+        //this code makes the lights _breathe_
+        i = i + j;
+        if (i >= MED){//if it's too bright decrease each loop by one 
+          j = -1;
+        }
+        if (i <= DIM){
+          j = 1;
+        }
+        l++;
       }
-      if (i <= 10){
-        j = 1;
-      }
+      run = false;
     }
-    }
-  
   }
 }
 
@@ -197,5 +215,5 @@ void breatheRed(int intervalMs){
 }
 
 void breathePink(int intervalMs){
-  breatheLed(255,0,128,200);
+  breatheLed(255,0,128,200,200);
 }
