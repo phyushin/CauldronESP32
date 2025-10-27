@@ -47,6 +47,8 @@ void setup() {
 
   pixelStrip.show();
 
+
+
   EEPROM.begin(EEPROM_SIZE);
   run = true;
 }
@@ -73,8 +75,8 @@ void loop() {
     if (remaining == 0) {
       bootComplete = true;
       //displayDrawMenu();
-      currentLedColor = Adafruit_NeoPixel::Color(255,0,0);  // RED for error  for main menu
-      ledUpdateBlinkingPixel(currentLedColor,200);
+      // RED for error  for main menu
+      ledUpdateBlinkingPixel(red,200);
     }
 
 
@@ -83,10 +85,10 @@ void loop() {
   //RulerLEDs();
   //breathePink(500);
   //RulerLEDs();
-  purple = Adafruit_NeoPixel::Color(151,16,245);
+
   //ledChaser(purple,500,59);
 
-  ledBar(purple,500,59);
+  ledRolling(orange,500,59);
 
 
   delay(200);

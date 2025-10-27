@@ -42,7 +42,7 @@ void RulerLEDs(){
     }
   }
 
-void ledBar(uint32_t colour, int intervalMs,  int length_of_LEDs){
+void ledRolling(uint32_t colour, int intervalMs,  int length_of_LEDs){
   run = true;
   bool ledOn = true;
 
@@ -54,11 +54,10 @@ void ledBar(uint32_t colour, int intervalMs,  int length_of_LEDs){
       pixelStrip.setPixelColor(i, (ledOn ? colour : 0));
       pixelStrip.show();
       delay(100);
-      i++;
       if (i == length_of_LEDs){
         ledOn = !ledOn;
       }
-     
+      i++;
     }
   }
 

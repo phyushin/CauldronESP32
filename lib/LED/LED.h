@@ -14,14 +14,23 @@ static Adafruit_NeoPixel pixelStrip(NUM_PIXELS_PER_STRIP, pixelPin, NEO_GRB + NE
 static unsigned long lastBlinkTime = 0;
 static bool ledOn = false;
 static uint32_t currentLedColor = 0;
-static uint32_t purple;
+
+/**
+ * some constant colours
+ */
+  static const uint32_t purple = Adafruit_NeoPixel::Color(151,16,245);
+  static const uint32_t orange = Adafruit_NeoPixel::Color(255,20,0);
+  static const uint32_t yellow = Adafruit_NeoPixel::Color(255,120,0);
+  static const uint32_t red = Adafruit_NeoPixel::Color(255,0,0); 
+  static const uint32_t green =  Adafruit_NeoPixel::Color(0,255,0); 
+  static const uint32_t blue = Adafruit_NeoPixel::Color(0,0,255); 
 
 
 
 void ledUpdateBlinkingPixel(uint32_t colour, int intervalMs = 500);
 //void ledChaser(Colour &c, int intervalMs = 500, int length_of_LEDs=7); <-- doesn't work don't know why yet will mess with this
 void ledChaser(uint32_t colour, int intervalMs = 500, int length_of_LEDs=7);
-void ledBar(uint32_t colour, int intervalMs = 500, int length_of_LEDs=7);
+void ledRolling(uint32_t colour, int intervalMs = 500, int length_of_LEDs=7);
 
 
 void cylonChaser(int intervalMs = 500, int length_of_LEDs=7);
@@ -36,7 +45,7 @@ void RulerLEDs();
 /**
  *  effects that _breathe_
  */
-void breatheLed( uint32_t colour, int intervalMs, int Length_of_LEDs); // generic 
+void breatheLed(uint32_t colour, int intervalMs, int Length_of_LEDs); // generic 
 void breatheBlue(int intervalMs);
 void breatheGreen(int intervalMs);
 void breatheRed(int intervalMs);
