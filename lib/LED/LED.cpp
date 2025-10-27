@@ -89,7 +89,7 @@ void ledChaser(uint32_t colour, int intervalMs,  int length_of_LEDs){
   }
 }
 
-void cylonChaser(int intervalMs, int length_of_LEDs){
+void cylonChaser(int intervalMs, int length_of_LEDs){ // for some reason this crashes if the length is set higher than 11 - need to investigate
   unsigned long now = millis();
   int i,j = 0;
   if (now - lastBlinkTime >= intervalMs) {
@@ -97,22 +97,22 @@ void cylonChaser(int intervalMs, int length_of_LEDs){
     ledOn = !ledOn;
     while (true){
       if (i > 0) {
-        pixelStrip.setPixelColor(i-1,0,0,0);
-        pixelStrip.setPixelColor(i,0,0,0);
+        pixelStrip.setPixelColor(i-1,0);
+        pixelStrip.setPixelColor(i,0);
       }
 
-      pixelStrip.setBrightness(30); // Set BRIGHTNESS to about 1/5 (max = 255)
-      pixelStrip.setPixelColor(i, 255,0,0);
-      pixelStrip.setPixelColor(i+1,0,0,0);
+      pixelStrip.setBrightness(30);
+      pixelStrip.setPixelColor(i, red);
+      pixelStrip.setPixelColor(i+1,0);
       pixelStrip.show();
-      delay(80);
+      delay(40);
       i = i + j;
-      if (i >= (length_of_LEDs - 1)){
+      if (i >= (length_of_LEDs - 1)){// we're at the top! go back down!
         j = -1;
         delay(20);
       }
-      if (i <= 0){
-        j = 1;
+      if (i <= 0){ // we're at the bottom! go up again!
+        j = 1; 
         delay(20);
       }
     }
@@ -167,14 +167,14 @@ void kittChaser(int intervalMs, int length_of_LEDs){// Like the front of the car
     ledOn = !ledOn;
     while (true){
       if (i > 0) {
-        pixelStrip.setPixelColor(i-2,0,0,0);
-        pixelStrip.setPixelColor(i,0,0,0);
+        pixelStrip.setPixelColor(i-2,0);
+        pixelStrip.setPixelColor(i,0);
       }
 
-      pixelStrip.setBrightness(30); // Set BRIGHTNESS to about 1/5 (max = 255)
-      pixelStrip.setPixelColor(i, 255,0,0);
-      pixelStrip.setPixelColor(i-1,255,0,0);
-      pixelStrip.setPixelColor(i+1,0,0,0);
+      pixelStrip.setBrightness(30); 
+      pixelStrip.setPixelColor(i, red);
+      pixelStrip.setPixelColor(i-1,red);
+      pixelStrip.setPixelColor(i+1,0);
       pixelStrip.show();
       delay(80);
       i = i + j;

@@ -88,7 +88,7 @@ void loop() {
 
   //ledChaser(purple,500,59);
 
-  ledRolling(orange,500,59);
+  cylonChaser(500,11);
 
 
   delay(200);
